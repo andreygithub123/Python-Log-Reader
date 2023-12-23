@@ -1,38 +1,26 @@
-import re
+from readFromFile import *
+from exercicesImpl import *
 
+# variables declaration
 timestamps = []
 log_types = []
-apps = []
-statuses = []
-run_times = []
+descriptions = []
 
-with open('../output.txt', 'r') as file:
-    lines = file.readlines()
+numberOfErrors = 0
+numberOfDebugs = 0
+numberOfInfos = 0
 
-log_pattern = re.compile(r'(\d{2}:\d{2}:\d{2}) - \[([A-Z]+)\] - (\w+) has (\w+) after (\d+)ms\.?.*')
+lines = readFile('./output.txt')
+timestamps, log_types, descriptions = extractInfo(lines)
 
-for log_line in lines:
-    match = log_pattern.match(log_line)
-    if match:
-        timestamp, log_type, app_name, status, runtime = match.groups()
-        print(log_type)
-        # Append the extracted values to their respective lists
-        timestamps.append(timestamp)
-        log_types.append(log_type)
-        apps.append(app_name)
-        statuses.append(status)
-        run_times.append(runtime)
+# ex1(log_types)
+# ex2(descriptions)
+# ex3(descriptions)
 
-err = 0
-warr = 0
-info = 0
+# ex4 and 5 can be made by using same method. (the method from 5 by adding log_type and process statement (suc or failed))
+# ex4(descriptions, log_types)
+ex5(descriptions, log_types)
 
-for info in log_type:
-    if info == 'ERROR':
-        err += 1
-    elif info == 'DEBUG':
-        warr += 1
-    else:
-        info += 1
+
 
 

@@ -1,30 +1,36 @@
 import re
 def readFile(path):
-    # '../output.txt'
+    # './output.txt'
     with open(path, 'r') as file:
         lines = file.readlines()
     return lines
 
-def extractInfo(lines):
-
-    log_pattern = re.compile(r'(\d{2}:\d{2}:\d{2}) - \[([A-Z]+)\] - (\w+) has (\w+) after (\d+)ms\.?.*')
-
+def extractInfo(log_data):
     timestamps = []
     log_types = []
-    apps = []
-    statuses = []
-    run_times = []
-    for log_line in lines:
-        match = log_pattern.match(log_line)
-        if match:
-            timestamp, log_type, app_name, status, runtime = match.groups()
-            print(status)
-            timestamps.append(timestamp)
-            log_types.append(log_type)
-            apps.append(app_name)
-            statuses.append(status)
-            run_times.append(runtime)
-    print(log_types)
-    return timestamps, log_types, apps, statuses, run_times
+    descriptions = []
+
+    for entry in log_data:
+        # we want to split the string into 3 parts: timestamp, log type, and description of log type
+        parts = entry.split(' - ')
+
+        timestamp = parts[0].strip()
+        # we want to remove the brackets from the log type
+        log_type = parts[1].strip("[]")
+        description = parts[2].strip()
+
+        timestamps.append(timestamp)
+        log_types.append(log_type)
+        descriptions.append(description)
+
+    # for i in range(len(timestamps)):
+    #     print(timestamps[i])
+    #     print(log_types[i])
+    #     # print(len(log_types[i]))
+    #     print(descriptions[i])
+    #     print('\n')
+
+    return timestamps, log_types, descriptions
+
 
 
