@@ -81,7 +81,7 @@ def ex2(logs):
     print("End: " + str(end) + " - " + str(endTime/end))
     print("API: " + str(api) + " - " + str(apiTime/api))
 
-    return
+    return front, frontTime/front, end, endTime/end, api, apiTime/api
 
 def ex3(logs):
     failed_front_number = 0
