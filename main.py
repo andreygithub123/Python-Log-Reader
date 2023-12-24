@@ -30,3 +30,5 @@ for log_line in log_lines:
 
 for log in compiled_logs:
     print(log)
+    print(log["timestamp"])
+

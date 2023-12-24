@@ -5,32 +5,34 @@ def readFile(path):
         lines = file.readlines()
     return lines
 
-def extractInfo(log_data):
-    timestamps = []
-    log_types = []
-    descriptions = []
+def extractData(log_lines):
+    #status = 1 (successfully) /  status = -1 (failed)
 
-    for entry in log_data:
-        # we want to split the string into 3 parts: timestamp, log type, and description of log type
-        parts = entry.split(' - ')
+    compiled_logs = []
 
-        timestamp = parts[0].strip()
-        # we want to remove the brackets from the log type
-        log_type = parts[1].strip("[]")
-        description = parts[2].strip()
+    ERROR_log_pattern = re.compile(r'(\d{2}:\d{2}:\d{2}) - \[([A-Z]+)\] - (\w+) has (.+?) after (\d+)ms.?.*')
+    DEBUG_log_pattern = re.compile(r'(\d{2}:\d{2}:\d{2}) - \[([A-Z]+)\] - (\w+) is still running, please wait...*')
+    INFO1_log_pattern = re.compile(r'(\d{2}:\d{2}:\d{2}) - \[([A-Z]+)\] - (\w+) has started running...*')
+    INFO2_log_pattern = re.compile(r'(\d{2}:\d{2}:\d{2}) - \[([A-Z]+)\] - (\w+) has (.+?) in (\d+)ms.?.*')
 
-        timestamps.append(timestamp)
-        log_types.append(log_type)
-        descriptions.append(description)
+    for log_line in log_lines:
+        ERROR_match = ERROR_log_pattern.match(log_line)
+        DEBUG_match = DEBUG_log_pattern.match(log_line)
+        INFO1_match = INFO1_log_pattern.match(log_line)
+        INFO2_match = INFO2_log_pattern.match(log_line)
+        if ERROR_match:
+            timestamp, log_type, app, status, run_time = ERROR_match.groups()
+            compiled_logs.append({"timestamp": timestamp, "log_type": log_type, "app": app, "status": -1, "run_time": run_time})
+        elif DEBUG_match:
+            timestamp, log_type, app = DEBUG_match.groups()
+            compiled_logs.append({"timestamp": timestamp, "log_type": log_type, "status": 0, "app": app})
+        elif INFO1_match:
+            timestamp, log_type, app = INFO1_match.groups()
+            compiled_logs.append({"timestamp": timestamp, "log_type": log_type, "status": 0, "app": app})
+        elif INFO2_match:
+            timestamp, log_type, app, status, run_time = INFO2_match.groups()
+            compiled_logs.append({"timestamp": timestamp, "log_type": log_type, "app": app, "status": 1, "run_time": run_time})
 
-    # for i in range(len(timestamps)):
-    #     print(timestamps[i])
-    #     print(log_types[i])
-    #     # print(len(log_types[i]))
-    #     print(descriptions[i])
-    #     print('\n')
-
-    return timestamps, log_types, descriptions
-
+    return compiled_logs
 
 
