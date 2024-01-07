@@ -4,6 +4,7 @@ import readFromFile
 
 class TestExercices(unittest.TestCase):
 
+    #test for the ex1
     def test_should_verify_the_number_of_info_API(self):
         dict = exercicesImpl.ex1(readFromFile.extractData(readFromFile.readFile("../data/logs.txt")))
         self.assertEqual(dict.get("INFO").get("API"), 1)
@@ -51,7 +52,7 @@ class TestExercices(unittest.TestCase):
     def test_should_verify_the_number_of_debug_SYSTEM(self):
         dict = exercicesImpl.ex1(readFromFile.extractData(readFromFile.readFile("../data/logs.txt")))
         self.assertEqual(dict.get("DEBUG").get("System"), 1)
-
+##############################################################################################################
 
 if __name__ == '__main__':
     unittest.main()
