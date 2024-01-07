@@ -6,7 +6,6 @@ def readFile(path):
     return lines
 
 def extractData(log_lines):
-    #status = 1 (successfully) /  status = -1 (failed)
 
     compiled_logs = []
 
