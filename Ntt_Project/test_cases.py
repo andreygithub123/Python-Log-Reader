@@ -54,6 +54,37 @@ class TestExercices(unittest.TestCase):
         self.assertEqual(dict.get("DEBUG").get("System"), 1)
 ##############################################################################################################
 
+    #test for the ex2
+    def test_should_verify_average_successful_time_for_frontend(self):
+        vect = exercicesImpl.ex2(readFromFile.extractData(readFromFile.readFile("../data/logs.txt")))
+        self.assertEqual(vect[0], 1)
+        self.assertEqual(vect[1], 25.0)
+    def test_should_verify_average_successful_time_for_backend(self):
+        vect = exercicesImpl.ex2(readFromFile.extractData(readFromFile.readFile("../data/logs.txt")))
+        self.assertEqual(vect[2], 2)
+        self.assertEqual(vect[3], 16.0)
+    def test_should_verify_average_successful_time_for_api(self):
+        vect = exercicesImpl.ex2(readFromFile.extractData(readFromFile.readFile("../data/logs.txt")))
+        self.assertEqual(vect[4], 1)
+        self.assertEqual(vect[5], 20.0)
+
+##############################################################################################################
+    #test for the ex3
+    def test_should_verify_the_number_of_failed_runs_for_frontend(self):
+        a = exercicesImpl.ex3(readFromFile.extractData(readFromFile.readFile("../data/logs.txt")))
+        self.assertEqual(a[0], 1)
+    def test_should_verify_the_number_of_failed_runs_for_backend(self):
+        a = exercicesImpl.ex3(readFromFile.extractData(readFromFile.readFile("../data/logs.txt")))
+        self.assertEqual(a[1], 1)
+
+    def test_should_verify_the_number_of_failed_runs_for_api(self):
+        a = exercicesImpl.ex3(readFromFile.extractData(readFromFile.readFile("../data/logs.txt")))
+        self.assertEqual(a[2], 1)
+
+    def test_should_verify_the_number_of_failed_runs_for_system(self):
+        a = exercicesImpl.ex3(readFromFile.extractData(readFromFile.readFile("../data/logs.txt")))
+        self.assertEqual(a[3], 2)
+
 # test for the ex4
     def test_most_errors(self):
         dict = exercicesImpl.ex4(readFromFile.extractData(readFromFile.readFile("../data/logs.txt")))
