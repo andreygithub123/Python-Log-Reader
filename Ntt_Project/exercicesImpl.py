@@ -128,7 +128,7 @@ def ex4(logs):
     my_dict = {"API": api_fails_number,
                "Frontend": frontend_fails_number,
                "System": sys_fails_number,
-               "Backend": backend_fails_number}
+               "BackendApp": backend_fails_number}
 
     sorted_dict = dict(sorted(my_dict.items(), key=operator.itemgetter(1), reverse=True))
     # print(next(iter(sorted_dict)), sorted_dict.get(next(iter(sorted_dict))))
@@ -155,7 +155,7 @@ def ex5(logs):
     my_dict = {"API": api_suc_number,
                "Frontend": frontend_suc_number,
                "System": sys_suc_number,
-               "Backend": backend_suc_number}
+               "BackendApp": backend_suc_number}
 
     sorted_dict = dict(sorted(my_dict.items(), key=operator.itemgetter(1), reverse=True))
     # print(next(iter(sorted_dict)), sorted_dict.get(next(iter(sorted_dict))))
