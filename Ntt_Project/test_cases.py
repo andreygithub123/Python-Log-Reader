@@ -83,7 +83,7 @@ class TestExercices(unittest.TestCase):
 
     def test_should_verify_the_number_of_failed_runs_for_system(self):
         a = exercicesImpl.ex3(readFromFile.extractData(readFromFile.readFile("../data/logs.txt")))
-        self.assertEqual(a[3], 2b)
+        self.assertEqual(a[3], 2)
 
 # test for the ex4
     def test_most_errors(self):
@@ -125,6 +125,14 @@ class TestExercices(unittest.TestCase):
         self.assertEqual(longest_runtime_api, 20)
         self.assertEqual(longest_runtime_backend, 16)
         self.assertEqual(longest_runtime_frontend, 25)
+
+    # test for ex 8
+    def test_most_active_hour_interval(self):
+        logs = readFromFile.extractData(readFromFile.readFile("../data/logs.txt"))
+        most_active_hour_interval = exercicesImpl.ex8(logs)
+        self.assertEqual(most_active_hour_interval['API'], "02")
+        self.assertEqual(most_active_hour_interval['BackendApp'], "00")
+        self.assertEqual(most_active_hour_interval['FrontendApp'], "12")
 
     # test for ex 9
     def test_failure_rate_percentage(self):
