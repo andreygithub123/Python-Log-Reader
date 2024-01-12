@@ -83,7 +83,7 @@ class TestExercices(unittest.TestCase):
 
     def test_should_verify_the_number_of_failed_runs_for_system(self):
         a = exercicesImpl.ex3(readFromFile.extractData(readFromFile.readFile("../data/logs.txt")))
-        self.assertEqual(a[3], 2)
+        self.assertEqual(a[3], 2b)
 
 # test for the ex4
     def test_most_errors(self):
