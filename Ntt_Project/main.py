@@ -4,12 +4,12 @@ from exercicesImpl import *
 
 lines = readFile("../data/output.txt")
 logs = extractData(lines)
-
-print(logs)
+longlogs= len(logs)
+# print(logs)
 
 # a = ex1(logs)
-a = ex2(logs)
-print(a)
+# a = ex2(logs)
+# print(a)
 # ex3(logs)
 # ex4(logs)
 # ex5(logs)
@@ -17,4 +17,3 @@ print(a)
 # ex7(logs)
 # ex8(logs)
 # ex9(logs)
-

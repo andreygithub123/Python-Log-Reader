@@ -270,42 +270,64 @@ def ex7(logs):
 
 def ex8(logs):
     sorted_log_entries = sorted(logs, key=lambda x: x.get('timestamp'))
+    dict = {}
+
+    max_api = 0
+    max_frontend = 0
+    max_backend = 0
+
+    max_api_time = "00"
+    max_frontend_time = "00"
+    max_backend_time = "00"
 
     api = 0
-    backend = 0
     frontend = 0
-    max_log_hour = 0
-    most_log_hour = ""
+    backend = 0
 
-    present_hour = sorted_log_entries[0]["timestamp"][:2]
+    current_time = "00"
+
     for log in sorted_log_entries:
-        if log["timestamp"][:2] != present_hour:
-            if max_log_hour < api + backend + frontend:
-                max_log_hour = api + backend + frontend
-                most_log_hour = present_hour
+        if current_time != log["timestamp"][:2]:
+            current_time = log["timestamp"][:2]
+            if api >= frontend and api >= backend:
+                dict[current_time] = "API"
+                if api > max_api:
+                    max_api = api
+                    max_api_time = current_time
+
+            elif frontend >= api and frontend >= backend:
+                dict[current_time] = "Frontend"
+                if frontend > max_frontend:
+                    max_frontend = frontend
+                    max_frontend_time = current_time
+
+            elif backend >= api and backend >= frontend:
+                dict[current_time] = "Backend"
+                if backend > max_backend:
+                    max_backend = backend
+                    max_backend_time = current_time
 
             api = 0
-            backend = 0
             frontend = 0
-            present_hour = log["timestamp"][:2]
+            backend = 0
 
-        if log["app"] == "API" and log["log_type"] == "INFO":
+        if log["log_type"] == "INFO" and log["app"] == "API":
             api += 0.5
         else:
             api += 1
-
-        if log["app"] == "FrontendApp" and log["log_type"] == "INFO":
+        if log["log_type"] == "INFO" and log["app"] == "FrontendApp":
             frontend += 0.5
         else:
             frontend += 1
-        if log["app"] == "BackendApp" and log["log_type"] == "INFO":
+        if log["log_type"] == "INFO" and log["app"] == "BackendApp":
             backend += 0.5
         else:
             backend += 1
 
-    # print("Busiest hour: " + most_log_hour + " with " + str(int(max_log_hour)) + " logs")
 
-    return most_log_hour, max_log_hour
+    # print(dict)
+    max_activity_timestamps = {"API": max_api_time, "Frontend": max_frontend_time, "Backend": max_backend_time}
+    return max_activity_timestamps
 
 def ex9(logs):
     dict = ex1(logs)
