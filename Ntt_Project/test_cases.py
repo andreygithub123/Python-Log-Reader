@@ -106,6 +106,45 @@ class TestExercices(unittest.TestCase):
          result = exercicesImpl.ex6(readFromFile.extractData(readFromFile.readFile("../data/logs.txt")))
          self.assertEqual(result, 3)  # Assuming 08:00:00-15:59:59 has the most failed runs
 
+#Edge Case 1: Empty Log File
+def test_empty_log_file(self):
+    dict = exercicesImpl.ex1([])
+    self.assertEqual(dict, {"INFO": {"API": 0, "Frontend": 0, "Backend": 0, "System": 0},
+                            "DEBUG": {"API": 0, "Frontend": 0, "Backend": 0, "System": 0},
+                            "ERROR": {"API": 0, "Frontend": 0, "Backend": 0, "System": 0}})
+
+def test_empty_log_file_ex2(self):
+    vect = exercicesImpl.ex2([])
+    self.assertEqual(vect, (0, 0, 0, 0, 0, 0))
+
+def test_empty_log_file_ex3(self):
+    a = exercicesImpl.ex3([])
+    self.assertEqual(a, (0, 0, 0, 0))
+
+def test_empty_log_file_ex4(self):
+    dict = exercicesImpl.ex4([])
+    self.assertEqual(dict, ("", 0))
+
+def test_empty_log_file_ex5(self):
+    dict = exercicesImpl.ex5([])
+    self.assertEqual(dict, ("", 0))
+
+def test_empty_log_file_ex6(self):
+    result = exercicesImpl.ex6([])
+    self.assertEqual(result, 0)
+
+def test_empty_log_file_ex7(self):
+    result = exercicesImpl.ex7([])
+    self.assertEqual(result, ([], [], [], [], [], []))
+
+def test_empty_log_file_ex8(self):
+    result = exercicesImpl.ex8([])
+    self.assertEqual(result, {"API": "", "Backend": "", "Frontend": ""})
+
+def test_empty_log_file_ex9(self):
+    result = exercicesImpl.ex9([])
+    self.assertEqual(result, {"Frontend": 0.0, "Backend": 0.0, "API": 0.0, "System": 0.0})
+
 
 if __name__ == '__main__':
     unittest.main()
