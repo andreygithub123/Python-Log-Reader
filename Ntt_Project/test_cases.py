@@ -125,6 +125,17 @@ class TestExercises(unittest.TestCase):
         self.assertEqual(longest_runtime_api, "20")
         self.assertEqual(longest_runtime_backend, "16")
         self.assertEqual(longest_runtime_frontend, "25")
+<<<<<<< HEAD
+=======
+
+    # test for ex 8
+    def test_most_active_hour_interval(self):
+        logs = readFromFile.extractData(readFromFile.readFile("../data/logs.txt"))
+        most_active_hour_interval = exercicesImpl.ex8(logs)
+        self.assertEqual(most_active_hour_interval['API'], "02")
+        self.assertEqual(most_active_hour_interval['Backend'], "00")
+        self.assertEqual(most_active_hour_interval['Frontend'], "18")
+>>>>>>> main
 
     # test for ex 9
     def test_failure_rate_percentage(self):

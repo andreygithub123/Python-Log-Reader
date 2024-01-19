@@ -272,6 +272,14 @@ def ex8(logs):
     sorted_log_entries = sorted(logs, key=lambda x: x.get('timestamp'))
     dict = {}
 
+    max_api = 0
+    max_frontend = 0
+    max_backend = 0
+
+    max_api_time = "00"
+    max_frontend_time = "00"
+    max_backend_time = "00"
+
     api = 0
     frontend = 0
     backend = 0
@@ -283,10 +291,21 @@ def ex8(logs):
             current_time = log["timestamp"][:2]
             if api >= frontend and api >= backend:
                 dict[current_time] = "API"
+                if api > max_api:
+                    max_api = api
+                    max_api_time = current_time
+
             elif frontend >= api and frontend >= backend:
                 dict[current_time] = "Frontend"
+                if frontend > max_frontend:
+                    max_frontend = frontend
+                    max_frontend_time = current_time
+
             elif backend >= api and backend >= frontend:
                 dict[current_time] = "Backend"
+                if backend > max_backend:
+                    max_backend = backend
+                    max_backend_time = current_time
 
             api = 0
             frontend = 0
@@ -306,8 +325,9 @@ def ex8(logs):
             backend += 1
 
 
-    print(dict)
-    return dict
+    # print(dict)
+    max_activity_timestamps = {"API": max_api_time, "Frontend": max_frontend_time, "Backend": max_backend_time}
+    return max_activity_timestamps
 
 def ex9(logs):
     dict = ex1(logs)
