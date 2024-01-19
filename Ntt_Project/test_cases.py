@@ -1,8 +1,8 @@
 import unittest
-import exercicesImpl
+import LogOperations
 import readFromFile
 
-class TestExercices(unittest.TestCase):
+class TestExercises(unittest.TestCase):
 
     #test for the ex1
     def test_should_verify_the_number_of_info_API(self):
@@ -125,7 +125,6 @@ class TestExercices(unittest.TestCase):
         self.assertEqual(longest_runtime_api, "20")
         self.assertEqual(longest_runtime_backend, "16")
         self.assertEqual(longest_runtime_frontend, "25")
-
     # test for ex 8
     def test_most_active_hour_interval(self):
         logs = readFromFile.extractData(readFromFile.readFile("../data/logs.txt"))
@@ -133,6 +132,7 @@ class TestExercices(unittest.TestCase):
         self.assertEqual(most_active_hour_interval['API'], "02")
         self.assertEqual(most_active_hour_interval['Backend'], "00")
         self.assertEqual(most_active_hour_interval['Frontend'], "18")
+
 
     # test for ex 9
     def test_failure_rate_percentage(self):
@@ -144,8 +144,6 @@ class TestExercices(unittest.TestCase):
         self.assertEqual(frontend_failure_rate, 33.33)
         self.assertEqual(backend_failure_rate, 25.0)
         self.assertEqual(api_failure_rate, 33.33)
-
-
 
 
 
